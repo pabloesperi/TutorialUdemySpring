@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title th:text="${Titulo}"></title>
+	</head>
+	<body>
+		<h1 th:text="${Titulo}"></h1>
+<!-- 		se indica el nombre del atributo del Model del controlador y para su atributo se omite el get. simplemente el nombre del atributo. -->
+		<span th:text="${usuario.nombre}"></span>
+		<span th:text="${usuario.apellido}"></span><br>
+		<span th:if="${usuario.email}" th:text="${usuario.email}"></span><br>
+<!-- 		cuando se ingresa en text un texto hay que poner comillas simples. -->
+		<span th:if="${usuario.email == null}" th:text="'No tiene email registrado'"></span>
+	</body>
+</html>
