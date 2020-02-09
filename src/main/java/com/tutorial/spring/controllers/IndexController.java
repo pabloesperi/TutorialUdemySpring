@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,13 +21,23 @@ import com.tutorial.spring.models.Usuario;
 @RequestMapping(value = "/app", method = RequestMethod.GET)//ruta de primer nivel. igual para todos los métodos
 public class IndexController {
 	
+	//injección de variables mediante @Value
+	@Value("${texto.indexcontroller.index.titulo}")
+	private String textoIndex;
+	
+	@Value("${texto.indexcontroller.index.perfil}")
+	private String textoPerfil;
+	
+	@Value("${texto.indexcontroller.index.listar}")
+	private String textoListar;
+	
 	//se puede usar value o path. es igual.
 	//Si no se indica el método, por defecto es GET.
 	//Si es un GET se puede directamente anotar @GetMapping. También según el caso puede ser @PostMapping, etc.
 	@RequestMapping(value = {"/index", "/", "/index2"}, method = RequestMethod.GET)//rutas de segundo nivel
 	public String index	(Model model) {
 		
-		model.addAttribute("Spring", "Prácticas Spring");
+		model.addAttribute("Spring", textoIndex);
 		model.addAttribute("Nombre", "Mi nombre es Pablo");
 		
 		return "index";
